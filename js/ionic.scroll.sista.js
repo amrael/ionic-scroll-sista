@@ -237,7 +237,7 @@
            */
           $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
               isNavBarTransitioning = true;
-              translateElementsSync(0, 0);
+              translateElementsSync(0);
               activeHeader = null;
               cachedHeader = null;
           });
