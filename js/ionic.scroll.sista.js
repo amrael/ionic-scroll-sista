@@ -235,20 +235,11 @@
           /**
            * Before the active view leaves, reset elements, and reset the scroll container
            */
-          $scope.$parent.$on('$ionicView.beforeLeave', function () {
-            isNavBarTransitioning = true;
-            translateElementsSync(0);
-            activeHeader = null;
-            cachedHeader = null;
-          });
-
-          /**
-           * Scroll to the top when entering to reset then scrollView scrollTop. (prevents jumping)
-           */
-          $scope.$parent.$on('$ionicView.beforeEnter', function () {
-            if (scrollView) {
-              scrollView.scrollTo(0, 0);
-            }
+          $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+              isNavBarTransitioning = true;
+              translateElementsSync(0, 0);
+              activeHeader = null;
+              cachedHeader = null;
           });
 
           /**
@@ -278,12 +269,6 @@
             var scrollTop = e.detail.scrollTop;
 
             y = scrollTop >= 0 ? Math.min(defaultEnd, Math.max(0, y + scrollTop - prevScrollTop)) : 0;
-
-            //if we are at the bottom, animate the header/tabs back in
-            if (scrollView.getScrollMax().top - scrollTop <= contentTop) {
-              y = 0;
-              duration = defaultDuration;
-            }
 
             prevScrollTop = scrollTop;
 
