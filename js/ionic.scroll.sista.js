@@ -235,7 +235,7 @@
           /**
            * Before the active view leaves, reset elements, and reset the scroll container
            */
-          $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+          $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
               isNavBarTransitioning = true;
               translateElementsSync(0);
               activeHeader = null;
