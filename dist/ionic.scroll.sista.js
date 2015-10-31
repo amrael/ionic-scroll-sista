@@ -166,12 +166,14 @@
             //translate active header
             if (activeHeader) {
               translateY(activeHeader, y, duration);
-              angular.forEach(activeHeader.children, function (child) {
-                child.style.opacity = fadeAmt;
-                if (scaleHeaderElements) {
-                  child.style[ionic.CSS.TRANSFORM] = 'scale(' + fadeAmt + ',' + fadeAmt + ')';
-                }
-              });
+              if ($attr.enableTranslucent != false) {
+                angular.forEach(activeHeader.children, function (child) {
+                  child.style.opacity = fadeAmt;
+                  if (scaleHeaderElements) {
+                    child.style[ionic.CSS.TRANSFORM] = 'scale(' + fadeAmt + ',' + fadeAmt + ')';
+                  }
+                });
+              }
             }
 
             //translate cached header
