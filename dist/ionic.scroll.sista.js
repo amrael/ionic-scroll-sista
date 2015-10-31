@@ -56,9 +56,6 @@
           function translateY (element, y, duration) {
             if (duration && !element.style[ionic.CSS.TRANSITION_DURATION]) {
               element.style[ionic.CSS.TRANSITION_DURATION] = duration;
-              $timeout(function () {
-                element.style[ionic.CSS.TRANSITION_DURATION] = '';
-              }, defaultDelay, false);
             }
             element.style[ionic.CSS.TRANSFORM] = 'translateY(' + (-y) + 'px)';
           }
@@ -267,7 +264,6 @@
             //support for jQuery events
             e = e.originalEvent || e;
 
-            var duration = $attr.scrollEventInterval ? $attr.scrollEventInterval + 'ms' : 0;
             var scrollTop = e.detail.scrollTop;
 
             y = scrollTop >= 0 ? Math.min(defaultEnd, Math.max(0, y + scrollTop - prevScrollTop)) : 0;
@@ -280,7 +276,7 @@
             }
             prevY = y;
 
-            translateElements(y, duration);
+            translateElements(y, 0);
           });
 
         }
