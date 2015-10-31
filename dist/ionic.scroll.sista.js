@@ -60,7 +60,7 @@
                 element.style[ionic.CSS.TRANSITION_DURATION] = '';
               }, defaultDelay, false);
             }
-            element.style[ionic.CSS.TRANSFORM] = 'translate3d(0, ' + (-y) + 'px, 0)';
+            element.style[ionic.CSS.TRANSFORM] = 'translateY(' + (-y) + 'px)';
           }
 
           /**
@@ -267,7 +267,7 @@
             //support for jQuery events
             e = e.originalEvent || e;
 
-            var duration = 0;
+            var duration = $attr.scrollEventInterval ? $attr.scrollEventInterval + 'ms' : 0;
             var scrollTop = e.detail.scrollTop;
 
             y = scrollTop >= 0 ? Math.min(defaultEnd, Math.max(0, y + scrollTop - prevScrollTop)) : 0;
