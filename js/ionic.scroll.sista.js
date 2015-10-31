@@ -166,7 +166,7 @@
             //translate active header
             if (activeHeader) {
               translateY(activeHeader, y, duration);
-              if ($attr.enableTranslucent != false) {
+              if ($attr.enableTranslucent != 'false') {
                 angular.forEach(activeHeader.children, function (child) {
                   child.style.opacity = fadeAmt;
                   if (scaleHeaderElements) {
