@@ -258,25 +258,25 @@
            * Called onScroll.  computes coordinates based on scroll position and translates accordingly
            */
           $element.bind('scroll', function (e) {
-            if (isNavBarTransitioning) {
-              return;
-            }
-            //support for jQuery events
-            e = e.originalEvent || e;
+              if (isNavBarTransitioning) {
+                  return;
+              }
+              //support for jQuery events
+              e = e.originalEvent || e;
+              var scrollTop = e.detail.scrollTop;
 
-            var scrollTop = e.detail.scrollTop;
+              y = scrollTop >= 0 ? Math.min(defaultEnd, Math.max(0, y + scrollTop - prevScrollTop)) : 0;
 
-            y = scrollTop >= 0 ? Math.min(defaultEnd, Math.max(0, y + scrollTop - prevScrollTop)) : 0;
+              if (prevScrollTop && scrollTop - prevScrollTop > 10 && scrollTop >= 10) {
+                if (y === defaultEnd)
+                  translateElements(defaultEnd, 0);
+              } else if (prevScrollTop && prevScrollTop - scrollTop > 10 || scrollTop < 10) {
+                if (y === 0)
+                  translateElements(0, 0);
+              }
 
-            prevScrollTop = scrollTop;
-
-            //if previous and current y are the same, no need to continue
-            if (prevY === y) {
-              return;
-            }
-            prevY = y;
-
-            translateElements(y, 0);
+              prevY = y;
+              prevScrollTop = scrollTop;
           });
 
         }
